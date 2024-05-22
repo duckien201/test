@@ -23,6 +23,23 @@ const Add = ({ navigation }) => {
             setError('Failed to add student, Please try again')
         }
     }
+    const handleCancel = () => {
+        Alert.alert(
+            'Xác nhận',
+            'Bạn có muốn hủy bỏ không?',
+            [
+                {
+                    text: 'Không',
+                    style: 'cancel',
+                },
+                {
+                    text: 'Có',
+                    onPress: () => navigation.goBack(),
+                },
+            ],
+            { cancelable: false }
+        );
+    };
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -44,27 +61,9 @@ const Add = ({ navigation }) => {
                 <TextInput placeholder='Nhập ngày sinh' style={styles.textInput}
                     value={dateOfBirth}
                     onChangeText={setDateOfBirth}></TextInput>
-                {/* <Text style={styles.textBody}>Mô tả kinh nghiệm</Text>
-                <TextInput style={{
-                    height: 100,
-                    width: '100%',
-                    borderColor: 'gray',
-                    borderWidth: 1,
-                    paddingLeft: 10,
-                    marginTop: 10
-                }}></TextInput>
-                <Text style={styles.textBody}>Email</Text>
-                <TextInput style={{
-                    height: 80,
-                    width: '100%',
-                    borderColor: 'gray',
-                    borderWidth: 1,
-                    paddingLeft: 10,
-                    marginTop: 10
-                }}></TextInput> */}
             </View>
             <View style={styles.footer}>
-                <Button title='Hủy bỏ'></Button>
+                <Button title='Hủy bỏ' onPress={handleCancel}></Button>
                 <Button title='Lưu lại' onPress={handleAddStudent} disabled={loading}></Button>
             </View>
         </View>
